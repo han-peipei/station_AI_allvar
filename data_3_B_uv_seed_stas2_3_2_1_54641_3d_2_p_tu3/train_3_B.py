@@ -350,7 +350,7 @@ def train_and_evaluate_from_npy(
     coords_tr, # [B, d]  (d=2/3)
     coords_va,   # [Bv, d]
     num_epochs=1000, batch_size=32, patience=3,
-    device=torch.device('cpu'),
+    device=torch.device('cuda'),
 ):
     hist_train = np.asarray(hist_train, dtype=np.float32)   # [B, H]
     nwp_train  = np.asarray(nwp_train,  dtype=np.float32)   # [B, F, C, H, W]
@@ -454,7 +454,7 @@ def train_and_evaluate_from_npy(
 ########################
     hist_train_3d = hist_train[..., None]   # [B, H_hist, 1]
     hist_val_3d   = hist_val[...,   None]   # [Bv, H_hist, 1]
-
+    pin = (device.type == "cuda")
     train_loader = DataLoader(
         TensorDataset(
             torch.tensor(hist_train_3d).float(),   # [B, H, 1]
@@ -463,7 +463,7 @@ def train_and_evaluate_from_npy(
             torch.tensor(y_train).float(),       # [B, F]
         ),
         batch_size=batch_size, shuffle=True,
-        generator=g, worker_init_fn=_worker_init_fn, num_workers=0
+        generator=g, worker_init_fn=_worker_init_fn, num_workers=0，pin_memory=pin,
     )
     val_loader = DataLoader(
         TensorDataset(
@@ -472,7 +472,7 @@ def train_and_evaluate_from_npy(
             torch.tensor(coords_va_norm).float(),
             torch.tensor(y_val).float(),
         ),
-        batch_size=batch_size, shuffle=False, num_workers=0
+        batch_size=batch_size, shuffle=False, num_workers=0，pin_memory=pin,
     )
 
     # ===== 3) 建模 =====
