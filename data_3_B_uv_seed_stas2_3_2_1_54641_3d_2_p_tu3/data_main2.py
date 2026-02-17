@@ -42,8 +42,8 @@ def to_array(x):
 ROOT = "/kaggle/input/stations_2324_train_drop_title/stations_2324_train_drop"   # 
 # ROOT = "/thfs1/home/qx_hyt/hpp/data/station_AI/train_data2"   
 csv_path = "2023.csv"  
-VARS = ("10u", "10v")                                        
-# VARS = ("10u", "10v",'2DPT','2RH','CAPE','MSL','2T','VIS')                                       
+# VARS = ("10u", "10v")                                        
+VARS = ("10u", "10v",'2RH','MSL','2T')                                       
 TI = "02"                                                     # 起报时（当前正则里只匹配02）
 _var_pat = "|".join(map(re.escape, VARS))
 _station_pat = r'(?:[A-Za-z]\d{4}|\d{5})'
