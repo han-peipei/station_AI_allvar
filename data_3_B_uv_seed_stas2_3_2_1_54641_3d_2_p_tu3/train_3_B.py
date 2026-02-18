@@ -351,7 +351,7 @@ def train_and_evaluate_from_npy(
     y_val,             # [Bv, F]
     coords_tr, # [B, d]  (d=2/3)
     coords_va,   # [Bv, d]
-    num_epochs=1000, batch_size=16, patience=3,
+    num_epochs=1000, batch_size=32, patience=3,
     device=torch.device('cuda'),
 ):
     hist_train = np.asarray(hist_train, dtype=np.float32)   # [B, H]
