@@ -15,6 +15,6 @@ export PYTHONPATH="$ROOT:$PYTHONPATH"
 ENTRY="$ROOT/data_main2.py"
 
 # ✅ 日志：写到可写目录
-LOG="/kaggle/working/all/data_main2.log"
+LOG="/kaggle/working/uv/data_main2.log"
 
 python -u "$ENTRY" 2>&1 | tee "$LOG"
