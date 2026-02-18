@@ -153,6 +153,10 @@ hist_val_all     = np.concatenate(hist_val,     axis=0) if hist_val     else Non
 model_val_all    = np.concatenate(nwp_val,     axis=0) if nwp_val     else None
 obs_val_all      = np.concatenate(y_val,     axis=0) if y_val     else None
 
+model_train_all = model_train_all.astype("float32", copy=False)
+hist_train_all  = hist_train_all.astype("float32", copy=False)
+obs_train_all   = obs_train_all.astype("float32", copy=False)
+
 print("hist_train_all:", None if hist_train_all is None else hist_train_all.shape)
 print("model_train_all:", None if model_train_all is None else model_train_all.shape)
 print("obs_train_all  :", None if obs_train_all   is None else obs_train_all.shape)
