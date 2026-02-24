@@ -565,6 +565,8 @@ def train_and_evaluate_from_npy(
             trues.append(true)
     preds = np.concatenate(preds,0)
     trues = np.concatenate(trues,0)
+    np.save(os.path.join(out_dir, "val_preds_windows.npy"), preds.astype(np.float32))
+    np.save(os.path.join(out_dir, "val_trues_windows.npy"), trues.astype(np.float32))
 #########################################################################
     time_val = None   # 或者用 pandas.date_range(...) 构造
 
