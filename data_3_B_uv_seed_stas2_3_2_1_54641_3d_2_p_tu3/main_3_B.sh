@@ -3,7 +3,8 @@ set -euo pipefail
 
 # 可选：线程数（Kaggle 不一定有 64 核）
 # export OMP_NUM_THREADS=8
-mkdir -p /kaggle/working/uv
+path=/kaggle/working/uv
+mkdir -p "$path"
 # 这个脚本所在目录（也就是仓库根目录/或你的代码目录）
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
@@ -15,6 +16,6 @@ export PYTHONPATH="$ROOT:$PYTHONPATH"
 ENTRY="$ROOT/data_main2.py"
 
 # ✅ 日志：写到可写目录
-LOG="/kaggle/working/uv/data_main2.log"
+LOG="$path/data_main2.log"
 
 python -u "$ENTRY" 2>&1 | tee "$LOG"
