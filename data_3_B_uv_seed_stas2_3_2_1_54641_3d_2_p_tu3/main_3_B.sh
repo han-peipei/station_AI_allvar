@@ -3,7 +3,7 @@ set -euo pipefail
 
 # 可选：线程数（Kaggle 不一定有 64 核）
 # export OMP_NUM_THREADS=8
-
+mkdir -p /kaggle/working/uv
 # 这个脚本所在目录（也就是仓库根目录/或你的代码目录）
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
